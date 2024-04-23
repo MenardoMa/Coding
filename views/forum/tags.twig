@@ -1,0 +1,52 @@
+{% extends "layout/default.twig" %}
+
+{% block title %}
+
+    <title>Coding | Tags</title>
+    
+{% endblock %}
+
+{% block content %}
+
+    <h1>tags .{{tag.name | upper}}</h1>
+
+    {% for topicAssoc in topicAssoc_tag %}
+        
+        <div class="topic">
+           <div class="group_topic">
+                <h3>
+                    <a href="">{{topicAssoc.title}}</a>
+                </h3>posts
+                {% for auth in topicAssoc.getAuteur %}
+                    <p><a href="">{{auth.pseudo}}</a></p>
+                {% endfor %}
+           </div>
+           <div class="group_topic">
+                {% for tag in topicAssoc.getTags %}
+                    <a href="/tags/{{tag.name | lower}}-{{tag.id}}">{{tag.name}}</a>
+                {% endfor %}
+
+                <a href="#">({{topicAssoc.getCountComments}})</a>
+     
+           </div>
+        </div>
+
+    {% endfor %}
+
+    <div class="pagination">
+
+        {% if courentPage > 1 %}
+            <a href="/tags/{{tag.name | lower}}-{{tag.id}}?p={{ courentPage - 1 }}">Prev</a>
+        {% endif %}
+
+        {% for i in 1..nombrePaginate %}
+            <a href="/tags/{{tag.name | lower}}-{{tag.id}}?p={{i}}">{{i}}</a>
+        {% endfor %}
+
+        {% if courentPage < nombrePaginate %}
+            <a href="/tags/{{tag.name | lower}}-{{tag.id}}?p={{ courentPage + 1 }}">suiv</a>
+        {% endif %}
+
+    </div>
+
+{% endblock %}

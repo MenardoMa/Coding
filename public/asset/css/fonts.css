@@ -1,0 +1,42 @@
+
+
+
+@font-face{
+
+	font-family: "Moon Sans variable";
+	font-display: auto;
+	src: url("../../../resources/fonts/NeueMontreal-Medium.otf") format("truetype") ;
+
+}
+
+@font-face{
+
+	font-family: "Moon Sans Regular";
+	font-display: auto;
+	src: url("../../../resources/fonts/NeueMontreal-Regular.otf") format("truetype") ;
+
+}
+
+@font-face{
+
+	font-family: "Moon Sans";
+	font-display: auto;
+	src: url("../../../resources/fonts/DMSans-VariableFont_opsz\,wght.ttf") format("truetype") ;
+
+}
+
+@font-face{
+
+	font-family: "Moon Roboto Medium";
+	font-display: auto;
+	src: url("../../../resources/fonts/RobotoSlab-Medium.ttf") format("truetype") ;
+
+}
+
+@font-face{
+
+	font-family: "Moon Roboto Regular";
+	font-display: auto;
+	src: url("../../../resources/fonts/RobotoSlab-Regular.ttf") format("truetype") ;
+
+}

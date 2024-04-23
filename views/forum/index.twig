@@ -1,0 +1,269 @@
+{% extends "layout/default.twig" %}
+
+{% block title %}
+
+    <title>Coding | Forum</title>
+    
+{% endblock %}
+
+{% block link %}
+
+    <link rel="stylesheet" href="../../public/asset/css/app.css">
+
+{% endblock %}
+
+{% block content %}
+
+<div class="bloc_container">
+    <div class="group">
+        <div class="container">
+            <h1>topic</h1>
+
+                <form action="" method="get">
+                    <input type="text" autocomplete="off" placeholder="Rechercher...">
+                    <input type="submit" id="live_search" value="Rechercher">
+                </form>
+
+            <div id="tabs"></div>
+        </div>
+    </div>
+
+    <div class="group">
+        <div class="container grid">
+
+            <div class="part_for">
+
+                {% for categorie in categories %}
+
+                    <div class="categorie {{categorie.name | lower }}">
+                        <a href="">
+                            {{categorie.name}}
+                        </a>
+                        
+                       <div class="categorie_child">
+                            {% for categorie in categorie.getCatChild %}
+                                <a href="" class="child">
+                                    {{categorie.name | upper}}
+                                </a>
+                            {% endfor %}
+                       </div>
+                        
+                    </div>
+                    
+                {% endfor %}
+
+            </div>
+
+            <div class="part_for">
+                {% for posts in post%}
+                    <div class="topic">
+                        <div class="group_topic">
+                            <div class="auteur">
+
+                                {% for favorable_reply in posts.getFavorable_reply %}
+
+                                    {% if favorable_reply.favorable == 1 %}
+
+                                        <div class="valable_reply">
+                                            <svg width="12pt" height="12pt" viewBox="0 0 12 12" version="1.1">
+                                                <g id="surface1">
+                                                    <path style=" stroke:none;fill-rule:nonzero;fill:#FFFFFF;fill-opacity:1;" d="M 10.414063 2.183594 L 9.585938 1.621094 C 9.359375 1.464844 9.046875 1.523438 8.890625 1.753906 L 4.835938 7.734375 L 2.972656 5.871094 C 2.777344 5.675781 2.460938 5.675781 2.265625 5.871094 L 1.554688 6.578125 C 1.359375 6.773438 1.359375 7.089844 1.554688 7.289063 L 4.421875 10.152344 C 4.582031 10.3125 4.835938 10.4375 5.0625 10.4375 C 5.289063 10.4375 5.519531 10.292969 5.667969 10.078125 L 10.546875 2.878906 C 10.703125 2.648438 10.644531 2.339844 10.414063 2.183594 Z "/>
+                                                </g>
+                                            </svg>
+                                        </div>
+
+                                        {% if favorable_reply.role_users == 1 %}
+                                    
+                                        <div class="valable_reply role">
+                                            <svg  width="12pt" height="12pt" viewBox="0 0 12 12" version="1.1">
+                                                <g id="surface1">
+                                                    <path style=" stroke:none;fill-rule:nonzero;fill:#FFFFFF;fill-opacity:1;" d="M 6.9375 0.101563 L 2.355469 7.003906 C 2.238281 7.164063 2.351563 7.382813 2.554688 7.382813 L 5.539063 7.382813 L 5.09375 11.703125 C 5.03125 11.964844 5.390625 12.113281 5.539063 11.890625 L 9.652344 4.988281 C 9.757813 4.828125 9.640625 4.617188 9.445313 4.617188 L 6.691406 4.617188 L 7.375 0.296875 C 7.4375 0.0429688 7.09375 -0.113281 6.9375 0.101563 Z "/>
+                                                </g>
+                                            </svg>
+                                        </div>
+
+                                        {% endif %}
+
+                                    {% endif %}
+                                    
+                                {% endfor %}
+
+                                <div class="avatar"></div>
+                            </div>
+                        </div>
+                        <div class="group_topic">
+                            <div class="closs">
+                                <h3>
+                                    <a href="">{{posts.title}}</a>
+                                </h3>
+                                    {% for auth in posts.getAuteur %}
+                                    <p>
+                                        <svg width="12pt" height="12pt" viewBox="0 0 12 12" version="1.1">
+                                            <g id="surface1">
+                                                <path style=" stroke:none;fill-rule:nonzero;fill:#6e758c;fill-opacity:1;" 
+                                                d="M 10.800781 10.800781 C 10.675781 10.800781 10.570313 10.703125 10.5625 
+                                                10.574219 C 10.550781 10.445313 10.277344 7.53125 5.28125 7.441406 L 5.28125 
+                                                9.121094 C 5.28125 9.210938 5.226563 9.296875 5.144531 9.335938 C 5.058594 
+                                                9.375 4.960938 9.363281 4.890625 9.304688 L 1.050781 6.1875 C 0.992188 6.140625
+                                                0.960938 6.070313 0.960938 6 C 0.960938 5.929688 0.992188 5.859375 1.050781 5.8125
+                                                L 4.890625 2.695313 C 4.960938 2.636719 5.058594 2.625 5.144531 2.664063 C 5.226563
+                                                2.703125 5.28125 2.789063 5.28125 2.878906 L 5.28125 4.5625 C 10.609375 4.714844
+                                                11.011719 9.914063 11.039063 10.503906 C 11.042969 10.523438 11.042969 10.539063
+                                                11.042969 10.558594 C 11.042969 10.691406 10.9375 10.800781 10.804688 10.800781
+                                                C 10.804688 10.800781 10.800781 10.800781 10.800781 10.800781 Z "/>
+                                            </g>
+                                        </svg>
+                                        <a href="" class="auteur_topic">{{auth.pseudo}}</a>
+                                        <span class="data_class">{{posts.getDate}}</span>
+                                    </p>
+                                {% endfor %}
+                            </div>
+                            <div class="closs">
+                                <div class="tags">
+
+                                    {% if  posts.getTags == true %}
+                                        <span class="tags_bloc"> 
+                                            {% for tag in posts.getTags %}
+                                                <a href="/tags/{{tag.name | lower}}-{{tag.id}}" class="tags_class {{tag.name | lower}}">{{tag.name | upper}}</a>
+                                            {% endfor %} 
+                                        </span>
+                                    {% endif %}
+
+                                    <span class="endBloc">
+                                        <svg width="14pt" height="14pt" viewBox="0 0 14 14" version="1.1">
+                                            <g id="surface1">
+                                                <path style=" stroke:none;fill-rule:nonzero;fill:#6e758c;fill-opacity:1;" d="M 1.3125 2.625 L 1.3125 11.375 L 5.507813 11.375 L 7 12.867188 L 8.492188 11.375 L 12.6875 11.375 L 12.6875 2.625 Z M 2.1875 3.5 L 11.8125 3.5 L 11.8125 10.5 L 8.132813 10.5 L 7 11.632813 L 5.867188 10.5 L 2.1875 10.5 Z M 3.9375 4.8125 L 3.9375 5.6875 L 10.0625 5.6875 L 10.0625 4.8125 Z M 3.9375 6.5625 L 3.9375 7.4375 L 10.0625 7.4375 L 10.0625 6.5625 Z M 3.9375 8.3125 L 3.9375 9.1875 L 8.3125 9.1875 L 8.3125 8.3125 Z "/>
+                                            </g>
+                                        </svg>
+                                        <span style="color:#6e758c">{{posts.getCountComments}}</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+
+                {# ********************** PAGINATION ********************** #}
+
+                <div class="pagination">
+
+                    {% if courentPage > 1 %}
+                        <a href="/forum?p={{ courentPage - 1 }}" class="chevron">
+                            <svg width="12pt" height="12pt" viewBox="0 0 12 12" version="1.1">
+                                <g id="surface1">
+                                    <path style=" stroke:none;fill-rule:nonzero;fill:#6e758c;fill-opacity:1;" d="M 5.964844 1.792969 L 1.757813 6 L 5.964844 10.207031 L 6.492188 9.667969 L 2.824219 6 L 6.492188 2.332031 Z M 8.589844 1.792969 L 4.382813 6 L 8.589844 10.207031 L 9.117188 9.667969 L 5.449219 6 L 9.117188 2.332031 Z "/>
+                                </g>
+                            </svg>
+                        </a>
+                    {% endif %}
+
+                    {% for i in 1..nombrePaginate %}
+                        {% if i == courentPage %}
+                            <a class="active" href="/forum?p={{i}}">{{i}}</a>
+                        {% else %}
+                            <a href="/forum?p={{i}}">{{i}}</a>
+                        {% endif %}
+                        
+                    {% endfor %}
+
+                    {% if courentPage < nombrePaginate %}
+                        <a href="/forum?p={{ courentPage + 1 }}" class="chevron">
+                            <svg width="12pt" height="12pt" viewBox="0 0 12 12" version="1.1">
+                                <g id="surface1">
+                                    <path style=" stroke:none;fill-rule:nonzero;fill:#6e758c;fill-opacity:1;" d="M 3.410156 1.792969 L 2.882813 2.332031 L 6.550781 6 L 2.882813 9.667969 L 3.410156 10.207031 L 7.617188 6 Z M 6.035156 1.792969 L 5.507813 2.332031 L 9.175781 6 L 5.507813 9.667969 L 6.035156 10.207031 L 10.242188 6 Z "/>
+                                </g>
+                            </svg>
+                        </a>
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{# FOOTER PAGE #}
+
+<div class="footer">
+
+    <div class="container_footer">
+
+        <div class="group__footer">
+            <h2>Coding</h2>
+            <span class="link_footer">
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
+                Ipsum eos repellat exercitationem asperiores recusandae 
+                cum officia sit cumque eligendi molestias at explicabo, 
+                nulla, accusamus maxime obcaecati aut consequuntur! Eos, eius. 
+            </span>
+            <div class="link_tags">
+
+                <a href="">
+                    <svg width="22pt" height="22pt" viewBox="0 0 22 22" version="1.1">
+                        <g id="surface1">
+                            <path style=" stroke:none;fill-rule:nonzero;fill:#0288D1;fill-opacity:1;" d="M 19.25 16.957031 C 19.25 18.222656 18.222656 19.25 16.957031 19.25 L 5.042969 19.25 C 3.777344 19.25 2.75 18.222656 2.75 16.957031 L 2.75 5.042969 C 2.75 3.777344 3.777344 2.75 5.042969 2.75 L 16.957031 2.75 C 18.222656 2.75 19.25 3.777344 19.25 5.042969 Z "/>
+                            <path style=" stroke:none;fill-rule:nonzero;fill:#FFFFFF;fill-opacity:1;" d="M 5.5 8.707031 L 7.792969 8.707031 L 7.792969 16.5 L 5.5 16.5 Z "/>
+                            <path style=" stroke:none;fill-rule:nonzero;fill:#FFFFFF;fill-opacity:1;" d="M 6.640625 7.792969 L 6.625 7.792969 C 5.941406 7.792969 5.5 7.28125 5.5 6.644531 C 5.5 5.996094 5.957031 5.5 6.652344 5.5 C 7.347656 5.5 7.777344 5.996094 7.792969 6.644531 C 7.792969 7.28125 7.347656 7.792969 6.640625 7.792969 Z "/>
+                            <path style=" stroke:none;fill-rule:nonzero;fill:#FFFFFF;fill-opacity:1;" d="M 16.5 16.5 L 14.207031 16.5 L 14.207031 12.328125 C 14.207031 11.320313 13.648438 10.632813 12.746094 10.632813 C 12.058594 10.632813 11.683594 11.097656 11.503906 11.546875 C 11.4375 11.707031 11.457031 12.152344 11.457031 12.375 L 11.457031 16.5 L 9.167969 16.5 L 9.167969 8.707031 L 11.457031 8.707031 L 11.457031 9.90625 C 11.789063 9.394531 12.304688 8.707031 13.628906 8.707031 C 15.269531 8.707031 16.5 9.738281 16.5 12.042969 Z "/>
+                        </g>
+                    </svg>
+                </a>
+                <a href="">
+                    <svg width="22pt" height="22pt" viewBox="0 0 22 22" version="1.1">
+                        <g id="surface1">
+                            <path style=" stroke:none;fill-rule:evenodd;fill:#000000;fill-opacity:1;" 
+                            d="M 11 2.75 C 6.441406 2.75 2.75 6.441406 2.75 11 C 2.75 14.644531 5.113281 
+                            17.738281 8.390625 18.828125 C 8.804688 18.902344 8.957031 18.652344 8.957031 
+                            18.429688 C 8.957031 18.234375 8.949219 17.714844 8.945313 17.027344 C 6.648438 
+                            17.527344 6.164063 15.921875 6.164063 15.921875 C 5.789063 14.96875 5.25 14.714844 
+                            5.25 14.714844 C 4.5 14.203125 5.304688 14.214844 5.304688 14.214844 C 6.132813 
+                            14.273438 6.570313 15.0625 6.570313 15.0625 C 7.304688 16.324219 8.5 15.960938 
+                            8.96875 15.75 C 9.046875 15.214844 9.257813 14.855469 9.492188 14.648438 C 7.660156
+                            14.441406 5.734375 13.730469 5.734375 10.570313 C 5.734375 9.667969 6.058594 8.933594
+                            6.585938 8.355469 C 6.5 8.148438 6.21875 7.308594 6.664063 6.171875 C 6.664063 6.171875
+                            7.359375 5.953125 8.933594 7.015625 C 9.59375 6.835938 10.300781 6.742188 11 6.742188
+                            C 11.699219 6.742188 12.40625 6.835938 13.066406 7.015625 C 14.640625 5.953125 15.332031
+                            6.171875 15.332031 6.171875 C 15.78125 7.308594 15.5 8.148438 15.414063 8.355469 C 15.945313
+                            8.933594 16.261719 9.667969 16.261719 10.570313 C 16.261719 13.738281 14.332031 14.433594
+                            12.496094 14.640625 C 12.792969 14.894531 13.054688 15.398438 13.054688 16.167969 C 13.054688
+                            17.269531 13.046875 18.160156 13.046875 18.429688 C 13.046875 18.652344 13.195313 18.910156
+                            13.613281 18.828125 C 16.890625 17.734375 19.25 14.644531 19.25 11 C 19.25 6.441406 15.558594
+                            2.75 11 2.75 Z "/>
+                        </g>
+                    </svg>
+                </a>
+            </div>
+        </div>
+        <div class="group__footer">
+            <h2>Mes derniers tweets</h2>
+             <span class="tweet_news">
+                <?xml version="1.0" encoding="UTF-8"?>
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20pt" height="20pt" viewBox="0 0 20 20" version="1.1">
+                <g id="surface1">
+                <path style=" stroke:none;fill-rule:nonzero;fill:#A9A9A9;fill-opacity:1;" d="M 6.398438 2 C 3.3125 2 0.800781 4.511719 0.800781 7.601563 L 0.800781 16.398438 L 8.800781 16.398438 L 8.800781 8.398438 L 4.398438 8.398438 L 4.398438 7.601563 C 4.398438 6.796875 4.648438 6.078125 5.023438 5.578125 C 5.398438 5.078125 5.882813 4.800781 6.398438 4.800781 L 6.800781 4.800781 L 6.800781 2 Z M 16.800781 2 C 13.710938 2 11.199219 4.511719 11.199219 7.601563 L 11.199219 16.398438 L 19.199219 16.398438 L 19.199219 8.398438 L 14.800781 8.398438 L 14.800781 7.601563 C 14.800781 6.796875 15.046875 6.078125 15.421875 5.578125 C 15.796875 5.078125 16.28125 4.800781 16.800781 4.800781 L 17.199219 4.800781 L 17.199219 2 Z M 6 2.882813 L 6 4.105469 C 5.367188 4.230469 4.789063 4.558594 4.382813 5.097656 C 3.890625 5.753906 3.601563 6.636719 3.601563 7.601563 L 3.601563 9.199219 L 8 9.199219 L 8 15.601563 L 1.601563 15.601563 L 1.601563 7.601563 C 1.601563 5.085938 3.542969 3.09375 6 2.882813 Z M 16.398438 2.882813 L 16.398438 4.105469 C 15.765625 4.230469 15.1875 4.558594 14.78125 5.097656 C 14.289063 5.753906 14 6.636719 14 7.601563 L 14 9.199219 L 18.398438 9.199219 L 18.398438 15.601563 L 12 15.601563 L 12 7.601563 C 12 5.085938 13.941406 3.09375 16.398438 2.882813 Z "/>
+                </g>
+                </svg>
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
+                Ipsum eos repellat exercitationem asperiores recusandae 
+                nulla, accusamus maxime obcaecati aut consequuntur! Eos, eius. 
+            </span>
+            <span class="quote"> <a href="">Se connecter</a> </span>
+            <span class="quote"> <a href="">Créer un compte</a> </span>
+            <span class="quote"> <a href="">discution</a> </span>
+        </div>
+        <div class="group__footer">
+            <h2>me contacter</h2>
+            <span> <a href="">Par email</a> </span>
+            <span> <a href="">linkedin</a> </span>
+            <span> <a href="">facebook</a> </span>
+            <span> <a href="">a propos</a> </span>
+            <span> <a href="">politique de confidentialité</a> </span>
+        </div>
+
+    </div>
+ 
+</div>
+
+{% endblock %}

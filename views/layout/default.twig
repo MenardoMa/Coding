@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block title %}{% endblock %}
+    <link rel="stylesheet" href="../../public/asset/css/reset.css">
+    <link rel="stylesheet" href="../../public/asset/css/fonts.css">
+    {% block link %}{% endblock %}
+</head>
+<body>
+
+    <header>
+        <nav></nav>
+    </header>
+
+    {{ block ("content") }}
+
+{# <script src="https://cdnjs.cloudflare.com/ajax/libs/timeago.js/2.0.2/timeago.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/timeago.js/2.0.2/timeago.locales.min.js"></script> #}
+<script src="../../public/asset/js/jquery.min.js"></script>
+<script src="../../public/asset/js/app.js"></script>
+ 
+</body>
+</html>

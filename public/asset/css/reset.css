@@ -1,0 +1,57 @@
+
+
+*, *::before,
+*::after{
+
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+
+}
+
+::-webkit-scrollbar{ width: 10px; }
+::-webkit-scrollbar-track{
+
+    background-color: #DDD;
+
+}
+
+::-webkit-scrollbar-thumb{
+ 
+    background-color: #808080;
+    border: 2px solid #DDD;
+    border-radius: 8px;
+
+}
+
+:root{
+
+    --background: #f7fafb;
+    --background_with: #FFF;
+    --back_tags_opac: #4c6aa8;
+    --back_tags_sat: #e6eff4;
+    --back_tags_jaun:rgb(244, 227, 158);
+    --back_tags_base: #86bb77;
+    --back_tags_js: #e2e950;
+    --back_tags_sql: rgb(204, 124, 220);
+    --test:blanchedalmond;
+
+    --back_reponse_topic: #58a400;
+
+}
+
+body,
+html{
+
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    background-color: var(--background);
+    font-family: "Moon Sans variable", sans-serif, serif;
+    font-size: 16px;
+
+}
+
